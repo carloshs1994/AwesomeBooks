@@ -36,9 +36,7 @@ function showBook() {
 
   let newBook = new Book(title.value, author.value);
   bookList.push(newBook);
-  console.log(bookList[0].title)
   addToLocalStorage(newBook);
-
   list.appendChild(li);
 
   //! Remove books
@@ -46,10 +44,18 @@ function showBook() {
 
   removeBtn.forEach(btn => {
     btn.addEventListener('click', e => {
-      /*bookList.filter((e.target.parentElement[0], index) => {
-        return e.target.parentElement[0].value != bookList[index].title;
-      })*/
+      removeBook(e.target.parentElement.firstElementChild.innerText);
       e.target.parentElement.remove();
     })
   })
+
+  function removeBook(element) {
+    const key = element;
+    localStorage.removeItem(key);
+    for(let i = 0; i < bookList.length; i++){
+      if (element == bookList[i].title){
+        bookList.splice(i,1);
+      }
+    }
+  }
 }
