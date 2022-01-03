@@ -1,0 +1,17 @@
+ul li {
+  list-style-type: none;
+}
+
+button,
+input {
+  display: block;
+}
+
+main {
+  width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  margin-bottom: 10px;
+}
