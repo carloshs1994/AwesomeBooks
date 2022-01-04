@@ -1,6 +1,4 @@
 window.onload = () => {
-
-
   const form = document.querySelector('form');
   const list = document.querySelector('ul');
   const title = document.querySelector('#title');
@@ -36,13 +34,6 @@ window.onload = () => {
     //! Remove books
     const removeBtn = document.querySelectorAll('.remove');
 
-    removeBtn.forEach((btn) => {
-      btn.addEventListener('click', e => {
-        removeBook(e.target.parentElement.firstElementChild.innerText);
-        e.target.parentElement.remove();
-      });
-    });
-
     function removeBook(element) {
       const key = element;
       localStorage.removeItem(key);
@@ -52,6 +43,13 @@ window.onload = () => {
         }
       }
     }
+
+    removeBtn.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        removeBook(e.target.parentElement.firstElementChild.innerText);
+        e.target.parentElement.remove();
+      });
+    });
   }
 
   form.addEventListener('submit', (e) => {
@@ -83,4 +81,4 @@ window.onload = () => {
   }
 
   getBook();
-}
+};
