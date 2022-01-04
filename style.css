@@ -2,13 +2,17 @@ ul li {
   list-style-type: none;
 }
 
+ul {
+  padding-left: 0;
+}
+
 button,
 input {
   display: block;
 }
 
 main {
-  width: 500px;
+  width: 300px;
   margin: 0 auto;
 }
 
