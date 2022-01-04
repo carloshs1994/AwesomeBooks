@@ -37,6 +37,7 @@ window.onload = () => {
     function removeBook(element) {
       const key = element;
       localStorage.removeItem(key);
+      // eslint-disable-next-line no-plusplus
       for (let i = 0; i < bookList.length; i++) {
         if (element === bookList[i].title) {
           bookList.splice(i, 1);
