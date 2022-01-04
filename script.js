@@ -36,7 +36,7 @@ window.onload = () => {
     function removeBook(element) {
       const key = element;
       localStorage.removeItem(key);
-      for (let i = 0; i < bookList.length; i+= 1) {
+      for (let i = 0; i < bookList.length; i += 1) {
         if (element === bookList[i].title) {
           bookList.splice(i, 1);
         }
@@ -82,7 +82,7 @@ window.onload = () => {
         <hr>
         `;
         list.appendChild(li);
-      })
+      });
     }
   }
 
@@ -95,7 +95,7 @@ window.onload = () => {
       function removeBook(element) {
         const key = element;
         localStorage.removeItem(key);
-        for (let i = 0; i < bookList.length; i+= 1) {
+        for (let i = 0; i < bookList.length; i += 1) {
           if (element === bookList[i].title) {
             bookList.splice(i, 1);
           }
