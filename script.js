@@ -10,9 +10,8 @@ window.onload = () => {
     this.author = author;
   }
 
-  function addToLocalStorage(newBook) {
-    const key = title.value;
-    localStorage.setItem(key, JSON.stringify(newBook));
+  function addToLocalStorage() {
+    localStorage.setItem('books', JSON.stringify(bookList));
   }
 
   //! Add books
@@ -28,7 +27,7 @@ window.onload = () => {
 
     const newBook = new Book(title.value, author.value);
     bookList.push(newBook);
-    addToLocalStorage(newBook);
+    addToLocalStorage(bookList);
     list.appendChild(li);
 
     //! Remove books
@@ -37,8 +36,7 @@ window.onload = () => {
     function removeBook(element) {
       const key = element;
       localStorage.removeItem(key);
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < bookList.length; i++) {
+      for (let i = 0; i < bookList.length; i+= 1) {
         if (element === bookList[i].title) {
           bookList.splice(i, 1);
         }
@@ -49,6 +47,8 @@ window.onload = () => {
       btn.addEventListener('click', (e) => {
         removeBook(e.target.parentElement.firstElementChild.innerText);
         e.target.parentElement.remove();
+        localStorage.clear();
+        addToLocalStorage(bookList);
       });
     });
   }
@@ -56,6 +56,8 @@ window.onload = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    localStorage.clear();
+    addToLocalStorage(bookList);
     showBook();
 
     title.value = '';
@@ -64,22 +66,46 @@ window.onload = () => {
 
   //! LocalStorage when loaded
   function getBook() {
-    Object.keys(localStorage).forEach((key) => {
-      const dataFromLocalStorage = JSON.parse(localStorage.getItem(key));
-      const list = document.querySelector('ul');
-      if (localStorage) {
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('books'));
+    const list = document.querySelector('ul');
+
+    if (localStorage) {
+      dataFromLocalStorage.forEach((book) => {
+        bookList.push(book);
+
         const li = document.createElement('li');
 
         li.innerHTML = `
-        <span>${dataFromLocalStorage.title}</span><br>
-        <span>${dataFromLocalStorage.author}</span>
+        <span>${book.title}</span><br>
+        <span>${book.author}</span>
         <button class="remove">Remove</button>
         <hr>
         `;
         list.appendChild(li);
-      }
-    });
+      })
+    }
   }
 
   getBook();
+
+  const removeBtn = document.querySelectorAll('.remove');
+
+  removeBtn.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      function removeBook(element) {
+        const key = element;
+        localStorage.removeItem(key);
+        for (let i = 0; i < bookList.length; i+= 1) {
+          if (element === bookList[i].title) {
+            bookList.splice(i, 1);
+          }
+        }
+      }
+
+      removeBook(e.target.parentElement.firstElementChild.innerText);
+      e.target.parentElement.remove();
+      localStorage.clear();
+      addToLocalStorage(bookList);
+    });
+  });
 };
