@@ -1,5 +1,5 @@
-window.onload = (event) => {
-  getBook();
+window.onload = () => {
+
 
   const form = document.querySelector('form');
   const list = document.querySelector('ul');
@@ -7,7 +7,7 @@ window.onload = (event) => {
   const author = document.querySelector('#author');
   const bookList = [];
 
-  function Book(title, author){
+  function Book(title, author) {
     this.title = title;
     this.author = author;
   }
@@ -16,15 +16,6 @@ window.onload = (event) => {
     const key = title.value;
     localStorage.setItem(key, JSON.stringify(newBook));
   }
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    showBook();
-
-    title.value = "";
-    author.value = "";
-  });
 
   //! Add books
   function showBook() {
@@ -37,35 +28,42 @@ window.onload = (event) => {
     <hr>
     `;
 
-    let newBook = new Book(title.value, author.value);
+    const newBook = new Book(title.value, author.value);
     bookList.push(newBook);
     addToLocalStorage(newBook);
     list.appendChild(li);
 
     //! Remove books
-  const removeBtn = document.querySelectorAll('.remove');
-  console.log(removeBtn);
+    const removeBtn = document.querySelectorAll('.remove');
 
-  removeBtn.forEach(btn => {
-    btn.addEventListener('click', e => {
-      removeBook(e.target.parentElement.firstElementChild.innerText);
-      e.target.parentElement.remove();
+    removeBtn.forEach((btn) => {
+      btn.addEventListener('click', e => {
+        removeBook(e.target.parentElement.firstElementChild.innerText);
+        e.target.parentElement.remove();
+      });
     });
-  });
 
-  function removeBook(element) {
-    const key = element;
-    localStorage.removeItem(key);
-    for(let i = 0; i < bookList.length; i++){
-      if (element == bookList[i].title){
-        bookList.splice(i,1);
+    function removeBook(element) {
+      const key = element;
+      localStorage.removeItem(key);
+      for (let i = 0; i < bookList.length; i++) {
+        if (element === bookList[i].title) {
+          bookList.splice(i, 1);
+        }
       }
     }
   }
-  }
 
-  //!.LocalStorage when loaded
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    showBook();
+
+    title.value = '';
+    author.value = '';
+  });
+
+  //! LocalStorage when loaded
   function getBook() {
     Object.keys(localStorage).forEach((key) => {
       const dataFromLocalStorage = JSON.parse(localStorage.getItem(key));
@@ -73,39 +71,16 @@ window.onload = (event) => {
       if (localStorage) {
         const li = document.createElement('li');
 
-          li.innerHTML = `
-          <span>${dataFromLocalStorage.title}</span><br>
-          <span>${dataFromLocalStorage.author}</span>
-          <button class="remove">Remove</button>
-          <hr>
-          `;
-          list.appendChild(li);
+        li.innerHTML = `
+        <span>${dataFromLocalStorage.title}</span><br>
+        <span>${dataFromLocalStorage.author}</span>
+        <button class="remove">Remove</button>
+        <hr>
+        `;
+        list.appendChild(li);
       }
     });
   }
 
-
-  /*function getBook() {
-    Object.keys(localStorage).forEach((key) => {
-      const dataFromLocalStorage = JSON.parse(localStorage.getItem(key));
-      console.log(dataFromLocalStorage);
-      if (localStorage) {
-        dataFromLocalStorage.books.forEach((book) => {
-          const li = document.createElement('li');
-
-          li.innerHTML = `
-          <span>${title.value}</span><br>
-          <span>${author.value}</span>
-          <button class="remove">Remove</button>
-          <hr>
-          `;
-
-          let newBook = new Book(title.value, author.value);
-          addToLocalStorage(newBook);
-          list.appendChild(li);
-          
-        });
-      }
-    });
-  }*/
-};
+  getBook();
+}
