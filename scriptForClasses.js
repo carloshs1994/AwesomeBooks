@@ -27,7 +27,6 @@ form.addEventListener('submit', function(event) {
   title.value = '';
   author.value = '';
   books.addNewBook(newBook);
-  //console.log('The list after adding: ', books.bookList);
   updateDomAndLocalStorage();
 });
 
@@ -42,7 +41,6 @@ function removeBooksFromList (){
           books.bookList.splice(i, 1);
         }
       }
-      //console.log('The list after removing: ', books.bookList);
       updateDomAndLocalStorage();
     });
   }
@@ -55,9 +53,8 @@ function appendBooksToList() {
   li.className = 'book';
   li.innerHTML = `
     <p>${book.title}</p>
-    <p>${book.author}</p>
+    <p>by ${book.author}</p>
     <button class="remove">Remove</button>
-    <hr>
   `;
   list.appendChild(li);
   })
@@ -75,10 +72,8 @@ function addToLocalStorage(books) {
 }
 
 function getFromLocalStorage() {
-  console.log(localStorage);
-  if(localStorage){
+  if(localStorage.length!=0){
     const booksFromLocStg = JSON.parse(localStorage.getItem('books'));
-    console.log(booksFromLocStg.bookList);
     booksFromLocStg.bookList.forEach(book => {
       books.bookList.push(book);
     })
