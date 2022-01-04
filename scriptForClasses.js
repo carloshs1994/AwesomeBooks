@@ -1,5 +1,3 @@
-/* eslint no-use-before-define: 2 */  // --> ON
-
 const list = document.querySelector('ul');
 const form = document.querySelector('form');
 const title = document.querySelector('#title');
@@ -30,7 +28,7 @@ function appendBooksToList() {
   books.bookList.forEach((book, index) => {
     const li = document.createElement('li');
 
-    if (index % 2 == 1) {
+    if (index % 2 === 1) {
       li.classList = 'bg-white';
     }
 
@@ -53,7 +51,7 @@ function updateDomAndLocalStorage() {
 function removeBook(removeButtons) {
   for (let i = 0; i < removeButtons.length; i += 1) {
     const button = removeButtons[i];
-    button.addEventListener('click', event => {
+    button.addEventListener('click', (event) => {
       const element = event.target.parentElement.firstElementChild.firstElementChild.innerText;
       for (let i = 0; i < books.bookList.length; i += 1) {
         if (element === books.bookList[i].title) {
@@ -65,17 +63,19 @@ function removeBook(removeButtons) {
   }
 }
 
+/* eslint max-classes-per-file: ["error", 2] */
+
 class Book{
   constructor (title, author) {
-  this.title = title;
-  this.author = author;
+    this.title = title;
+    this.author = author;
   }
 }
 
 function getFromLocalStorage() {
-  if (localStorage.length!=0) {
+  if (localStorage.length != 0) {
     const booksFromLocStg = JSON.parse(localStorage.getItem('books'));
-    booksFromLocStg.bookList.forEach(book => {
+    booksFromLocStg.bookList.forEach((book) => {
       books.bookList.push(book);
     });
     updateDomAndLocalStorage();
@@ -84,7 +84,7 @@ function getFromLocalStorage() {
 
 getFromLocalStorage();
 
-form.addEventListener('submit', event => {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
   const newBook = new Book(title.value, author.value);
   title.value = '';
