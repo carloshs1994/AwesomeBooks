@@ -9,6 +9,21 @@ class Books {
   addNewBook(newBook) {
     return this.bookList.push(newBook);
   }
+  removeBooksFromList() {
+    const removeButtons = document.getElementsByClassName('remove');
+  for(let i = 0; i < removeButtons.length; i += 1){
+    let button = removeButtons[i];
+    button.addEventListener('click', function(event) {
+      let element = event.target.parentElement.firstElementChild.innerText;
+      for (let i = 0; i < books.bookList.length; i++) {
+        if (element === books.bookList[i].title) {
+          books.bookList.splice(i, 1);
+        }
+      }
+      updateDomAndLocalStorage();
+    });
+  }
+  }
 }
 const books = new Books();
 
@@ -30,22 +45,6 @@ form.addEventListener('submit', function(event) {
   updateDomAndLocalStorage();
 });
 
-function removeBooksFromList (){
-  const removeButtons = document.getElementsByClassName('remove');
-  for(let i = 0; i < removeButtons.length; i += 1){
-    let button = removeButtons[i];
-    button.addEventListener('click', function(event) {
-      let element = event.target.parentElement.firstElementChild.innerText;
-      for (let i = 0; i < books.bookList.length; i++) {
-        if (element === books.bookList[i].title) {
-          books.bookList.splice(i, 1);
-        }
-      }
-      updateDomAndLocalStorage();
-    });
-  }
-}
-
 function appendBooksToList() {
   list.innerHTML = '';
   books.bookList.forEach(book => {
@@ -64,7 +63,7 @@ function updateDomAndLocalStorage () {
   appendBooksToList();
   localStorage.clear();
   addToLocalStorage(books);
-  removeBooksFromList();
+  books.removeBooksFromList();
 }
 
 function addToLocalStorage(books) {
