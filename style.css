@@ -17,6 +17,8 @@ ul li {
 
 ul {
   padding-left: 0;
+  border: 2px solid #444;
+  border-radius: 5px;
 }
 
 button,
@@ -27,7 +29,7 @@ input {
 main {
   width: 500px;
   margin: 0 auto;
-  font-family:fantasy;
+  font-family: fantasy;
   margin-top: 80px;
 }
 
@@ -77,11 +79,6 @@ p {
   font-family: sans-serif;
 }
 
-ul {
-  border: 2px solid #444;
-  border-radius: 5px;
-}
-
 .bg-white {
   background-color: white;
 }
@@ -89,6 +86,6 @@ ul {
 button {
   box-shadow: rgba(0, 0, 0, 0.4) 5px 5px;
   border: 2px solid #444;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border-radius: 3px;
 }
