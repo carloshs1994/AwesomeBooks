@@ -13,7 +13,9 @@ class Books {
 
   removeBooksFromList() {
     const removeButtons = document.getElementsByClassName('remove');
+    // eslint-disable-next-line no-use-before-define
     removeBook(removeButtons);
+    this;
   }
 }
 
@@ -55,7 +57,7 @@ function removeBook(removeButtons) {
       const element = event.target.parentElement.firstElementChild.firstElementChild.innerText;
       for (let i = 0; i < books.bookList.length; i += 1) {
         if (element === books.bookList[i].title) {
-        books.bookList.splice(i, 1);
+          books.bookList.splice(i, 1);
         }
       }
       updateDomAndLocalStorage();
@@ -65,15 +67,15 @@ function removeBook(removeButtons) {
 
 /* eslint max-classes-per-file: ["error", 2] */
 
-class Book{
-  constructor (title, author) {
+class Book {
+  constructor(title, author) {
     this.title = title;
     this.author = author;
   }
 }
 
 function getFromLocalStorage() {
-  if (localStorage.length != 0) {
+  if (localStorage.length !== 0) {
     const booksFromLocStg = JSON.parse(localStorage.getItem('books'));
     booksFromLocStg.bookList.forEach((book) => {
       books.bookList.push(book);
