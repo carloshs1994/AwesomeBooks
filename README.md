@@ -15,7 +15,7 @@
 
 ### Live Demo
 
-[Live Demo Link]https://carloshs1994.github.io/AwesomeBooks/)
+[Live Demo Link](https://carloshs1994.github.io/AwesomeBooks/)
 
 ## Authors
 
