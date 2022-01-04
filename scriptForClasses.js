@@ -14,7 +14,7 @@ class Books {
   for(let i = 0; i < removeButtons.length; i += 1){
     let button = removeButtons[i];
     button.addEventListener('click', function(event) {
-      let element = event.target.parentElement.firstElementChild.innerText;
+      let element = event.target.parentElement.firstElementChild.firstElementChild.innerText;
       for (let i = 0; i < books.bookList.length; i++) {
         if (element === books.bookList[i].title) {
           books.bookList.splice(i, 1);
@@ -47,16 +47,20 @@ form.addEventListener('submit', function(event) {
 
 function appendBooksToList() {
   list.innerHTML = '';
-  books.bookList.forEach(book => {
+  books.bookList.forEach((book, index) => {
     const li = document.createElement('li');
-  li.className = 'book';
-  li.innerHTML = `
-    <p>${book.title}</p>
+
+    if (index % 2 == 1) {
+      li.classList = 'bg-white';
+    }
+
+    li.innerHTML = `
+    <p>"<span>${book.title}</span>" </p>
     <p>by ${book.author}</p>
     <button class="remove">Remove</button>
-  `;
-  list.appendChild(li);
-  })
+    `;
+    list.appendChild(li);
+  });
 }
 
 function updateDomAndLocalStorage () {
