@@ -15,6 +15,7 @@ class Books {
     const removeButtons = document.getElementsByClassName('remove');
     // eslint-disable-next-line no-use-before-define
     removeBook(removeButtons);
+    // eslint-disable-next-line no-unused-expressions
     this;
   }
 }
