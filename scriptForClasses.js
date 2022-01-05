@@ -31,9 +31,8 @@ class Books {
 
 const books = new Books();
 
-function checkIfEmpty () {
-   if(books.bookList.length !== 0){
-    console.log('hey');
+function checkIfEmpty() {
+  if (books.bookList.length !== 0) {
     list.style.display = 'block';
   } else {
     list.style.display = 'none';
@@ -112,29 +111,29 @@ form.addEventListener('submit', (event) => {
   books.addNewBook(newBook);
   updateDomAndLocalStorage();
   modalContainer.style.display = 'flex';
-  setTimeout (function(){
+  setTimeout(() => {
     modalContainer.style.display = 'none';
   }, 2000);
   removeBook();
 });
 
 nav.addEventListener('click', (event) => {
-  if (event.target.innerText === 'List'){
-    listSection.style.display = "block";
-    formSection.style.display = "none";
-    contactSection.style.display = "none";
+  if (event.target.innerText === 'List') {
+    listSection.style.display = 'block';
+    formSection.style.display = 'none';
+    contactSection.style.display = 'none';
     listTab.classList.add('red');
     formTab.classList.remove('red');
     contactTab.classList.remove('red');
-  } else if (event.target.innerText === 'Add new'){
-    listSection.style.display = "none";
-    formSection.style.display = "block";
-    contactSection.style.display = "none";
+  } else if (event.target.innerText === 'Add new') {
+    listSection.style.display = 'none';
+    formSection.style.display = 'block';
+    contactSection.style.display = 'none';
     listTab.classList.remove('red');
     formTab.classList.add('red');
     contactTab.classList.remove('red');
-  } else if (event.target.innerText === 'Contact'){
-    listSection.style.display = "none";
+  } else if (event.target.innerText === 'Contact') {
+    listSection.style.display = 'none';
     formSection.style.display = 'none';
     contactSection.style.display = 'block';
     listTab.classList.remove('red');
