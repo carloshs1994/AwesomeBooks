@@ -49,7 +49,6 @@ function updateDomAndLocalStorage() {
   appendBooksToList();
   localStorage.clear();
   addToLocalStorage(books);
-  removeBook();
 }
 
 function removeBook() {
@@ -60,6 +59,7 @@ function removeBook() {
       const element = event.target.parentElement.firstElementChild.firstElementChild.innerText;
       books.removeBooksFromList(element);
       updateDomAndLocalStorage();
+      removeBook();
     });
   }
 }
@@ -80,6 +80,7 @@ function getFromLocalStorage() {
       books.bookList.push(book);
     });
     updateDomAndLocalStorage();
+    removeBook();
   }
 }
 
@@ -92,4 +93,5 @@ form.addEventListener('submit', (event) => {
   author.value = '';
   books.addNewBook(newBook);
   updateDomAndLocalStorage();
+  removeBook();
 });
