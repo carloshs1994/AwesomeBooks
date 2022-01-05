@@ -95,3 +95,37 @@ form.addEventListener('submit', (event) => {
   updateDomAndLocalStorage();
   removeBook();
 });
+
+const nav = document.querySelector('nav');
+const listTab = document.querySelector('.list-tab');
+const formTab = document.querySelector('.form-tab');
+const contactTab = document.querySelector('.constact-tab');
+const listSection = document.getElementById('list-section');
+const formSection = document.getElementById('form-section');
+const contactSection = document.getElementById('contact-section');
+
+nav.addEventListener('click', (event) => {
+  if (event.target.innerText === 'List'){
+    listSection.style.display = "block";
+    formSection.style.display = "none";
+    contactSection.style.display = "none";
+    listTab.style.color = 'red';
+    formTab.style.color = 'black';
+    contactTab.style.color = 'black';
+  } else if (event.target.innerText === 'Add new'){
+    listSection.style.display = "none";
+    formSection.style.display = "block";
+    contactSection.style.display = "none";
+    listTab.style.color = 'black';
+    formTab.style.color = 'red';
+    contactTab.style.color = 'black';
+  } else if (event.target.innerText === 'Contact'){
+    listSection.style.display = "none";
+    formSection.style.display = 'none';
+    contactSection.style.display = 'block';
+    listTab.style.color = 'black';
+    formTab.style.color = 'black';
+    contactTab.style.color = 'red';
+  }
+});
+
