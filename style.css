@@ -19,6 +19,7 @@ ul {
   padding-left: 0;
   border: 5px solid #444;
   border-radius: 10px;
+  display: none;
 }
 
 button,
@@ -69,19 +70,19 @@ hr {
 }
 
 form input {
-  width: 100%;
+  width: calc(100% - 10px);
   height: 40px;
-  padding: 0;
+  padding: 0 0 0 10px;
   border: 2px solid #444;
   border-radius: 5px;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
 form input::placeholder {
   font-style: italic;
   color: #222;
-  padding: 10px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #add-btn {
@@ -170,8 +171,9 @@ footer {
   display: none;
 }
 
-#contact-section p, div {
-  font-size: 20px;
+#contact-section p, 
+#contact-section div {
+  font-size: 30px;
 }
 
 #contact-section div {
@@ -181,5 +183,29 @@ footer {
 }
 
 #contact-section div strong {
-  font-size: 80px;
+  font-size: 100px;
+}
+
+.red {
+  color: red;
+}
+
+article {
+  width: 80%;
+  max-width: 430px;
+  height: 50px;
+  background-color: rgba(36, 155, 32, 0.568);
+  position: absolute;
+  bottom: -67px;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+article p {
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
 }

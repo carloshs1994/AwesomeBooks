@@ -2,6 +2,14 @@ const list = document.querySelector('ul');
 const form = document.querySelector('form');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
+const modalContainer = document.querySelector('.modal-container');
+const nav = document.querySelector('nav');
+const listTab = document.querySelector('.list-tab');
+const formTab = document.querySelector('.form-tab');
+const contactTab = document.querySelector('.contact-tab');
+const listSection = document.getElementById('list-section');
+const formSection = document.getElementById('form-section');
+const contactSection = document.getElementById('contact-section');
 class Books {
   constructor() {
     this.bookList = [];
@@ -22,6 +30,15 @@ class Books {
 }
 
 const books = new Books();
+
+function checkIfEmpty () {
+   if(books.bookList.length !== 0){
+    console.log('hey');
+    list.style.display = 'block';
+  } else {
+    list.style.display = 'none';
+  }
+}
 
 function addToLocalStorage(books) {
   localStorage.setItem('books', JSON.stringify(books));
@@ -49,6 +66,7 @@ function updateDomAndLocalStorage() {
   appendBooksToList();
   localStorage.clear();
   addToLocalStorage(books);
+  checkIfEmpty();
 }
 
 function removeBook() {
@@ -93,38 +111,34 @@ form.addEventListener('submit', (event) => {
   author.value = '';
   books.addNewBook(newBook);
   updateDomAndLocalStorage();
+  modalContainer.style.display = 'flex';
+  setTimeout (function(){
+    modalContainer.style.display = 'none';
+  }, 2000);
   removeBook();
 });
-
-const nav = document.querySelector('nav');
-const listTab = document.querySelector('.list-tab');
-const formTab = document.querySelector('.form-tab');
-const contactTab = document.querySelector('.constact-tab');
-const listSection = document.getElementById('list-section');
-const formSection = document.getElementById('form-section');
-const contactSection = document.getElementById('contact-section');
 
 nav.addEventListener('click', (event) => {
   if (event.target.innerText === 'List'){
     listSection.style.display = "block";
     formSection.style.display = "none";
     contactSection.style.display = "none";
-    listTab.style.color = 'red';
-    formTab.style.color = 'black';
-    contactTab.style.color = 'black';
+    listTab.classList.add('red');
+    formTab.classList.remove('red');
+    contactTab.classList.remove('red');
   } else if (event.target.innerText === 'Add new'){
     listSection.style.display = "none";
     formSection.style.display = "block";
     contactSection.style.display = "none";
-    listTab.style.color = 'black';
-    formTab.style.color = 'red';
-    contactTab.style.color = 'black';
+    listTab.classList.remove('red');
+    formTab.classList.add('red');
+    contactTab.classList.remove('red');
   } else if (event.target.innerText === 'Contact'){
     listSection.style.display = "none";
     formSection.style.display = 'none';
     contactSection.style.display = 'block';
-    listTab.style.color = 'black';
-    formTab.style.color = 'black';
-    contactTab.style.color = 'red';
+    listTab.classList.remove('red');
+    formTab.classList.remove('red');
+    contactTab.classList.add('red');
   }
 });
