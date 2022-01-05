@@ -1,9 +1,24 @@
 ul li {
   list-style-type: none;
+  display: flex;
+  gap: 4px;
+  width: auto;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #ddd;
+}
+
+.remove {
+  margin-left: auto;
+  padding: 2px 10px;
+  height: 25px;
+  cursor: pointer;
 }
 
 ul {
   padding-left: 0;
+  border: 2px solid #444;
+  border-radius: 5px;
 }
 
 button,
@@ -12,10 +27,65 @@ input {
 }
 
 main {
-  width: 300px;
+  width: 500px;
   margin: 0 auto;
+  font-family: fantasy;
+  margin-top: 80px;
+}
+
+body {
+  background-image: url(background.jpg);
 }
 
 input {
   margin-bottom: 10px;
+}
+
+section {
+  width: 250px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2em;
+}
+
+hr {
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 60%;
+}
+
+form input {
+  width: 96%;
+  padding: 4px;
+  border: 2px solid #444;
+  border-radius: 4px;
+}
+
+form input::placeholder {
+  font-style: italic;
+  color: #222;
+}
+
+#add-btn {
+  float: right;
+  padding: 4px 10px;
+}
+
+p {
+  font-family: sans-serif;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+button {
+  box-shadow: rgba(0, 0, 0, 0.4) 5px 5px;
+  border: 2px solid #444;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-radius: 3px;
 }
