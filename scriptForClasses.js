@@ -212,7 +212,7 @@ setInterval(() => {
   }
 
   const date = `${month} ${today.getDate()}${day} ${today.getFullYear()},`;
-  const time = hour + ':' + today.getMinutes() + ':' + today.getSeconds() + ' ' + hourType;
-  const dateTime = date + ' ' + time;
+  const time = `${hour}:${today.getMinutes()}:${today.getSeconds()} ${hourType}`;
+  const dateTime = `${date} ${time}`;
   document.querySelector('.time-and-date').innerHTML = dateTime;
 }, 1000);
