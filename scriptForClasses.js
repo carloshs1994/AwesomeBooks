@@ -2,6 +2,14 @@ const list = document.querySelector('ul');
 const form = document.querySelector('form');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
+const modalContainer = document.querySelector('.modal-container');
+const nav = document.querySelector('nav');
+const listTab = document.querySelector('.list-tab');
+const formTab = document.querySelector('.form-tab');
+const contactTab = document.querySelector('.contact-tab');
+const listSection = document.getElementById('list-section');
+const formSection = document.getElementById('form-section');
+const contactSection = document.getElementById('contact-section');
 class Books {
   constructor() {
     this.bookList = [];
@@ -22,6 +30,14 @@ class Books {
 }
 
 const books = new Books();
+
+function checkIfEmpty() {
+  if (books.bookList.length !== 0) {
+    list.style.display = 'block';
+  } else {
+    list.style.display = 'none';
+  }
+}
 
 function addToLocalStorage(books) {
   localStorage.setItem('books', JSON.stringify(books));
@@ -49,6 +65,7 @@ function updateDomAndLocalStorage() {
   appendBooksToList();
   localStorage.clear();
   addToLocalStorage(books);
+  checkIfEmpty();
 }
 
 function removeBook() {
@@ -93,5 +110,109 @@ form.addEventListener('submit', (event) => {
   author.value = '';
   books.addNewBook(newBook);
   updateDomAndLocalStorage();
+  modalContainer.style.display = 'flex';
+  setTimeout(() => {
+    modalContainer.style.display = 'none';
+  }, 2000);
   removeBook();
 });
+
+nav.addEventListener('click', (event) => {
+  if (event.target.innerText === 'List') {
+    listSection.style.display = 'block';
+    formSection.style.display = 'none';
+    contactSection.style.display = 'none';
+    listTab.classList.add('red');
+    formTab.classList.remove('red');
+    contactTab.classList.remove('red');
+  } else if (event.target.innerText === 'Add new') {
+    listSection.style.display = 'none';
+    formSection.style.display = 'block';
+    contactSection.style.display = 'none';
+    listTab.classList.remove('red');
+    formTab.classList.add('red');
+    contactTab.classList.remove('red');
+  } else if (event.target.innerText === 'Contact') {
+    listSection.style.display = 'none';
+    formSection.style.display = 'none';
+    contactSection.style.display = 'block';
+    listTab.classList.remove('red');
+    formTab.classList.remove('red');
+    contactTab.classList.add('red');
+  }
+});
+
+setInterval(() => {
+  const today = new Date();
+  let month = '';
+  let day = '';
+  let hour = today.getHours();
+  let hourType = 'am';
+
+  if (hour > 12) {
+    hour -= 12;
+    hourType = 'pm';
+  } else if (hour === 12) {
+    hourType = 'pm';
+  }
+
+  switch (today.getDate()) {
+    case 1:
+      day = 'st';
+      break;
+    case 2:
+      day = 'nd';
+      break;
+    case 3:
+      day = 'rd';
+      break;
+    default:
+      day = 'th';
+  }
+
+  switch (today.getMonth()) {
+    case 0:
+      month = 'January';
+      break;
+    case 1:
+      month = 'February';
+      break;
+    case 2:
+      month = 'March';
+      break;
+    case 3:
+      month = 'April';
+      break;
+    case 4:
+      month = 'May';
+      break;
+    case 5:
+      month = 'June';
+      break;
+    case 6:
+      month = 'July';
+      break;
+    case 7:
+      month = 'August';
+      break;
+    case 8:
+      month = 'September';
+      break;
+    case 9:
+      month = 'October';
+      break;
+    case 10:
+      month = 'November';
+      break;
+    case 11:
+      month = 'December';
+      break;
+    default:
+      month = 'Do not know';
+  }
+
+  const date = `${month} ${today.getDate()}${day} ${today.getFullYear()},`;
+  const time = `${hour}:${today.getMinutes()}:${today.getSeconds()} ${hourType}`;
+  const dateTime = `${date} ${time}`;
+  document.querySelector('.time-and-date').innerHTML = dateTime;
+}, 1000);

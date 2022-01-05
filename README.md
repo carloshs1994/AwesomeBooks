@@ -5,7 +5,8 @@
 
 > We created an app to store, display and remove books from localStorage and UI. This project has been built with the help of modern CSS3 and ES6. Check the live demo to try.
 
-![screenshot](Screenshot.png)
+![screenshot](Screenshot1.png)
+![screenshot](Screenshot2.png)
 
 ### Built With
 
