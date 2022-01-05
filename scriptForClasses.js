@@ -143,21 +143,20 @@ nav.addEventListener('click', (event) => {
 });
 
 setInterval(() => {
-  let today = new Date();
+  const today = new Date();
   let month = '';
   let day = '';
   let hour = today.getHours();
   let hourType = 'am';
-  
+
   if (hour > 12) {
     hour -= 12;
     hourType = 'pm';
   } else if (hour === 12) {
     hourType = 'pm';
   }
-  
-  
-  switch(today.getDate()) {
+
+  switch (today.getDate()) {
     case 1:
       day = 'st';
       break;
@@ -170,8 +169,8 @@ setInterval(() => {
     default:
       day = 'th';
   }
-  
-  switch(today.getMonth()) {
+
+  switch (today.getMonth()) {
     case 0:
       month = 'January';
       break;
@@ -208,9 +207,12 @@ setInterval(() => {
     case 11:
       month = 'December';
       break;
+    default:
+      month = 'Do not know';
   }
-  let date = `${month} ${today.getDate()}${day} ${today.getFullYear()},`;
-  let time = hour + ":" + today.getMinutes() + ":" + today.getSeconds() + ' ' + hourType;
-  let dateTime = date+' '+time;
+
+  const date = `${month} ${today.getDate()}${day} ${today.getFullYear()},`;
+  const time = hour + ':' + today.getMinutes() + ':' + today.getSeconds() + ' ' + hourType;
+  const dateTime = date + ' ' + time;
   document.querySelector('.time-and-date').innerHTML = dateTime;
 }, 1000);
