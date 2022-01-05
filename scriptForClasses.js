@@ -128,4 +128,3 @@ nav.addEventListener('click', (event) => {
     contactTab.style.color = 'red';
   }
 });
-
