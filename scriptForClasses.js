@@ -11,12 +11,13 @@ class Books {
     return this.bookList.push(newBook);
   }
 
-  removeBooksFromList() {
-    const removeButtons = document.getElementsByClassName('remove');
-    // eslint-disable-next-line no-use-before-define
-    removeBook(removeButtons);
-    // eslint-disable-next-line no-unused-expressions
-    this;
+  removeBooksFromList(element) {
+    for (let i = 0; i < this.bookList.length; i += 1) {
+      if (element === this.bookList[i].title) {
+        this.bookList.splice(i, 1);
+      }
+    }
+    return this.bookList;
   }
 }
 
@@ -48,19 +49,16 @@ function updateDomAndLocalStorage() {
   appendBooksToList();
   localStorage.clear();
   addToLocalStorage(books);
-  books.removeBooksFromList();
+  removeBook();
 }
 
-function removeBook(removeButtons) {
+function removeBook() {
+  const removeButtons = document.getElementsByClassName('remove');
   for (let i = 0; i < removeButtons.length; i += 1) {
     const button = removeButtons[i];
     button.addEventListener('click', (event) => {
       const element = event.target.parentElement.firstElementChild.firstElementChild.innerText;
-      for (let i = 0; i < books.bookList.length; i += 1) {
-        if (element === books.bookList[i].title) {
-          books.bookList.splice(i, 1);
-        }
-      }
+      books.removeBooksFromList(element);
       updateDomAndLocalStorage();
     });
   }
