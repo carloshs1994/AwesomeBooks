@@ -20,6 +20,7 @@ ul {
   border: 5px solid #444;
   border-radius: 10px;
   display: none;
+  margin-bottom: 150px;
 }
 
 button,
@@ -37,6 +38,7 @@ main {
 body {
   background: url(background.jpg) no-repeat;
   background-size: cover;
+  margin: 0;
 }
 
 input {
@@ -122,7 +124,7 @@ footer {
   border-radius: 5px;
   padding: 0 40px;
   justify-content: space-between;
-  background-color: rgba(221, 221, 221, 0.596);
+  background-color: rgba(221, 221, 221, 0.842);
 }
 
 nav {
@@ -156,8 +158,8 @@ footer h2 {
 }
 
 footer {
-  position: absolute;
-  width: 90.4%;
+  position: fixed;
+  width: 92.7%;
   bottom: 0;
 }
 
