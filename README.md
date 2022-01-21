@@ -23,6 +23,7 @@
 👤 **Carlos Herver Solano**
 
 - GitHub: [@carloshs1994](https://github.com/carloshs1994)
+- Twitter: [@hscarlos_](https://twitter.com/hscarlos_)
 
 👤 **Ibrohim Rasulov**
 
